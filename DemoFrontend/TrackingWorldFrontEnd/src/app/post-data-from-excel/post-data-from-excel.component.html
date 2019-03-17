@@ -1,0 +1,35 @@
+<div *ngIf="ShowLoader" class="col-sm-2" style="margin-left: 45%;">
+    <div class="sp sp-circle"></div>
+    <p>Saving to Database</p>
+  </div>
+  <div *ngIf="!ShowLoader">
+<table  class="table table-stripedtable-hover ">
+    <thead>
+      <tr>
+        <th>Reg No</th>
+        <th>Model</th>
+        <th>Make</th>
+        <th>Color</th>
+        <th>Engine No</th>
+        <th>Chasis No</th>
+        <th>Date Of Purchase</th>
+        <th>Active</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let data of vehicles">
+        <td>{{data.regNo}}</td>
+        <td>{{data.model}}</td>
+        <td>{{data.make}}</td>
+        <td>{{data.color}}</td>
+        <td>{{data.engineNo}}</td>
+        <td>{{data.chasisNo}}</td>
+        <td>{{data.dateOfPurchase}}</td>
+        <td>{{data.active}}</td>
+      </tr>
+    </tbody>
+
+  </table>
+  <Button class="btn btn-block center btn-danger btn-lg" (click)="SaveAll()" >Save To Database</Button>
+</div>

@@ -1,0 +1,75 @@
+<div class="card  border border-success">
+  <div class="card-header text-center">
+  <h1 >
+    Vehicles List
+  </h1>
+  <br>
+  <button class="btn btn-outline-success btn-sm" (click)="GoToDataupload()" >Add New Vehicles</button>
+</div>
+  <div class="card-body">
+      <div *ngIf="vehicleService.addedNewRecord" class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>New Vehicle Added!</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div *ngIf="RecordDeleted" class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Vehicle Deleted!</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+    <div *ngIf="!isDataLoaded" class="col-sm-2" style="margin-left: 45%;">
+      <div class="sp sp-circle"></div>
+    </div>
+    <div *ngIf="ConnectivityError" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Connectivity Error!!</strong> System could not not connect backend service.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <div *ngIf="isDataLoaded">
+      <table datatable [dtOptions]="dtOptions" class="row-border hover ">
+        <thead>
+          <tr>
+            <th>Reg No</th>
+            <th>Model</th>
+            <th>Make</th>
+            <th>Color</th>
+            <th>Engine No</th>
+            <th>Chasis No</th>
+            <th>Date Of Purchase</th>
+            <th>Active</th>
+            <th>Edit / Delete</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let data of vehicles">
+            <td>{{data.regNo}}</td>
+            <td>{{data.model}}</td>
+            <td>{{data.make}}</td>
+
+            <td>{{data.color}}</td>
+            <td>{{data.engineNo}}</td>
+            <td>{{data.chasisNo}}</td>
+            <td>{{data.dateOfPurchase}}</td>
+            <td>{{data.active}}</td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button class="btn btn-outline-primary btn-sm" (click)="Edit(data)">Edit</button>
+                    <button class="btn btn-outline-danger btn-sm" (click)="Delete(data.vehicleID)">Delete</button>
+                </div>
+
+              </td>
+
+
+
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
