@@ -18,7 +18,7 @@ namespace TrackingWorldDemo.Controllers
             if (db.vehicles.Count() == 0)
             {
                 Vehicle vehicle = new Vehicle();
-                vehicle.RegNo="Test Reg";
+                vehicle.RegNo = "Test Reg";
                 vehicle.Active = true;
                 vehicle.ChasisNo = "12ab";
                 vehicle.Color = "Red";
@@ -66,21 +66,42 @@ namespace TrackingWorldDemo.Controllers
                 return BadRequest();
             }
         }
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public IActionResult Put([FromBody] Vehicle vehicle)
         {
+            if (vehicle == null)
+            {
+                return BadRequest();
+            }
+            var v = db.vehicles.Find(vehicle.VehicleID);
+            if (v == null)
+            {
+                return NotFound();
+            }
+            v.VehicleID = vehicle.VehicleID;
+            v.Active = vehicle.Active;
+            v.ChasisNo = vehicle.ChasisNo;
+            v.Make = vehicle.Make;
+            v.Color = vehicle.Color;
+            v.Model = vehicle.Model;
+            v.DateOfPurchase = vehicle.DateOfPurchase;
+            v.EngineNo = vehicle.EngineNo;
+            v.RegNo = vehicle.RegNo;
+            db.vehicles.Update(v);
+            db.SaveChanges();
+            return NoContent();
         }
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var vehicle=db.vehicles.Find(id);
+            var vehicle = db.vehicles.Find(id);
             db.vehicles.Remove(vehicle);
             db.SaveChanges();
         }
         [HttpOptions]
         public IActionResult Options()
         {
-           return Ok();
+            return Ok();
         }
     }
 }

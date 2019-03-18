@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { PostDataFromExcelComponent } from './post-data-from-excel/post-data-from-excel.component';
+import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
 const appRoutes: Routes = [ {
   path: 'upload',
   component: UploadDataComponent,
@@ -31,6 +32,12 @@ const appRoutes: Routes = [ {
   component: PostDataFromExcelComponent,
   pathMatch: 'full',
   data: { title: 'Data From Excel sheet' }
+},
+{
+  path: 'edit',
+  component: EditVehicleComponent,
+  pathMatch: 'full',
+  data: { title: 'Edit Vehicle' }
 }
 ];
 @NgModule({
@@ -38,7 +45,8 @@ const appRoutes: Routes = [ {
     AppComponent,
     UploadDataComponent,
     HomeComponent,
-    PostDataFromExcelComponent
+    PostDataFromExcelComponent,
+    EditVehicleComponent
   ],
   imports: [
     BrowserModule,

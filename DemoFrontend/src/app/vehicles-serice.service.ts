@@ -9,7 +9,9 @@ import { Observable } from 'rxjs';
 export class VehiclesService {
   public ApiAddress: string;
   public addedNewRecord = false;
+  public EditedVehicle = false;
   public VehiclesFromExcel: Vehicle[] = [];
+  public VehicleToEdit: Vehicle = new Vehicle();
   constructor(private http: HttpClient) {
     this.ApiAddress = 'https://localhost:5001/api/vehicle';
   }
@@ -23,5 +25,9 @@ export class VehiclesService {
     const header = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(this.ApiAddress, JSON.stringify(vehicle), { headers: header });
 
+  }
+  UpdateVehicle(vehicle: Vehicle) {
+    const header = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put(this.ApiAddress, JSON.stringify(vehicle), { headers: header });
   }
 }

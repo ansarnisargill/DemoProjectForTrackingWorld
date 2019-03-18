@@ -1,0 +1,42 @@
+<div class="card ">
+  <div class="card-header text-center">
+    Edit Vehicle
+  </div>
+  <div class="card-body">
+    <form class="col-lg-6 col-12 col-md-8 offset-lg-3 offset-md-3" ngNativeValidate (ngSubmit)="SubmitData()"
+      >
+      <label for="regNo" class="m-1">Reg No:</label>
+      <input type="text" required [(ngModel)]="vehicleToEdit.regNo" class="form-control m-1"  name="regNo" id="regNo"
+       placeholder="Reg No" >
+      <label for="make" class="m-1">Make:</label>
+      <input type="text" required ngModel class="form-control m-1" [(ngModel)]="vehicleToEdit.make" name="make" id="make" placeholder="Make">
+      <label for="model" class="m-1">Model :</label>
+      <input type="text" required ngModel class="form-control m-1" name="model" [(ngModel)]="vehicleToEdit.model" id="model" placeholder="Model">
+      <label for="color" class="m-1">Color :</label>
+
+      <input type="text" required ngModel class="form-control m-1" name="color" [(ngModel)]="vehicleToEdit.color" id="color" placeholder="Color">
+      <label for="engineNo" class="m-1">Engine No:</label>
+      <input type="text" required ngModel class="form-control m-1" [(ngModel)]="vehicleToEdit.engineNo" name="engineNo" id=engineNo placeholder="Engine No">
+      <label for="chasisNo" class="m-1">Chasis No:</label>
+      <input type="text" required ngModel class="form-control m-1" [(ngModel)]="vehicleToEdit.chasisNo" name="chasisNo" id="chasisNo"
+        placeholder="Chasis No">
+      <label for="dateOfPurchase" class="m-1">Date Of Purchase:</label>
+      <input type="date" required ngModel class="form-control m-1"  name="dateOfPurchase" id="dateOfPurchase"
+        placeholder="Date Of Purchase">
+      <label for="active" class="m-1">Active? :</label>
+      <select name="active" id="active" [(ngModel)]="vehicleToEdit.active" class="form-control m-1">
+        <option value="true" >Active</option>
+        <option value="false">Not Active</option>
+      </select>
+
+
+
+      <input type="submit" class="btn btn-outline-primary " value="Save" />
+
+
+    </form>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-link" (click)="GoBack()"> Go To Main</button>
+  </div>
+</div>

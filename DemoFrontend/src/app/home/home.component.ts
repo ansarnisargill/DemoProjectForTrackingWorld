@@ -39,11 +39,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.vehicleService.addedNewRecord = false;
   }
   Edit(v: Vehicle) {
-    console.log(v);
+    this.vehicleService.VehicleToEdit = v;
+    this.router.navigateByUrl('/edit');
+    this.vehicleService.EditedVehicle=false;
+    this.vehicleService.addedNewRecord = false;
 
   }
   Delete(id: number) {
     this.isDataLoaded = false;
+    this.vehicleService.EditedVehicle=false;
     this.vehicleService.addedNewRecord = false;
     this.vehicleService.DeleteVehicle(id)
       .subscribe(

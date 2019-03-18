@@ -47,7 +47,6 @@ export class UploadDataComponent implements OnInit {
     fileReader.onload = (e) => {
       this.arrayBuffer = fileReader.result;
       const data = new Uint8Array(this.arrayBuffer);
-      console.log(data);
       const arr = new Array();
       for (let i = 0; i !== data.length; ++i) {
         arr[i] = String.fromCharCode(data[i]);
@@ -60,8 +59,9 @@ export class UploadDataComponent implements OnInit {
       this.vehicleService.VehiclesFromExcel = [];
       ArrayOfObjects.map(
         (val) => {
-          if (val.active != null) {
-            this.vehicleService.VehiclesFromExcel.push(val as Vehicle);
+          const vcl = val as Vehicle;
+          if (vcl.active != null) {
+            this.vehicleService.VehiclesFromExcel.push(vcl);
           }
         });
       if (this.vehicleService.VehiclesFromExcel.length === 0) {

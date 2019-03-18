@@ -19,9 +19,19 @@ export class PostDataFromExcelComponent implements OnInit {
   ngOnInit() { }
   SaveAll() {
     this.ShowLoader = true;
+    let iter = this.vehicleService.VehiclesFromExcel.length;
+    let i = 0;
     this.vehicleService.VehiclesFromExcel
-      .map((val) => { this.vehicleService.CreateVehicle(val).subscribe(() => { }, () => { }, () => { }); });
-    this.router.navigateByUrl('/home');
+      .map((val) => {
+        this.vehicleService.CreateVehicle(val).subscribe(() => { }, () => { },
+          () => {
+            i += 1;
+            if (i === iter) {
+              this.router.navigateByUrl('/home');
+
+            }
+          });
+      });
   }
 
 }
